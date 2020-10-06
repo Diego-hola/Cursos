@@ -1,0 +1,35 @@
+<?php
+// module/Album/view/album/album/edit.phtml:
+
+$title = 'Edit position';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<?php
+$strEmpPosition = $form->get('strEmpPosition');
+$strEmpPosition->setAttribute('class', 'form-control');
+$strEmpPosition->setAttribute('placeholder', 'Position');
+
+
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->setAttribute('action', $this->url('jposition', [
+    'action' => 'edit',
+    'id'     => $id,
+]));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+<div class="form-group">
+    <?= $this->formLabel($strEmpPosition) ?>
+    <?= $this->formElement($strEmpPosition) ?>
+    <?= $this->formElementErrors()->render($strEmpPosition, ['class' => 'help-block']) ?>
+</div>
+
+
+<?php
+echo $this->formSubmit($submit);
+echo $this->formHidden($form->get('id'));
+echo $this->form()->closeTag();

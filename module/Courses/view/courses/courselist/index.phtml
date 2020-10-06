@@ -1,0 +1,30 @@
+<?php
+$title = 'My courses';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<p>
+    <a href="<?= $this->url('courselist', ['action' => 'add']) ?>">Add new course</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>Course Description</th>
+    <th>CourseCost</th>
+    <th>Course Duration Years</th>
+    <th>Notes</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($courselists as $courselist) : ?>
+    <tr>
+        <td><?= $this->escapeHtml($courselist->strCourseDescription) ?></td>
+        <td><?= $this->escapeHtml($courselist->curCourseCost) ?></td>
+        <td><?= $this->escapeHtml($courselist->intCourseDurationYears) ?></td>
+        <td><?= $this->escapeHtml($courselist->memNotes) ?></td>
+        <td>
+            <a href="<?= $this->url('courselist', ['action' => 'edit', 'id' => $courselist->id]) ?>">Edit</a>
+            <a href="<?= $this->url('courselist', ['action' => 'delete', 'id' => $courselist->id]) ?>">Delete</a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+</table>

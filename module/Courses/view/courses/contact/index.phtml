@@ -1,0 +1,26 @@
+<?php
+$title = 'My contacts';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<p>
+    <a href="<?= $this->url('contact', ['action' => 'add']) ?>">Add new contact</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>Type contact</th>
+
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($contacts as $contact) : ?>
+    <tr>
+        <td><?= $this->escapeHtml($contact->strContactType) ?></td>
+        
+        <td>
+            <a href="<?= $this->url('contact', ['action' => 'edit', 'id' => $contact->id]) ?>">Edit</a>
+            <a href="<?= $this->url('contact', ['action' => 'delete', 'id' => $contact->id]) ?>">Delete</a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+</table>
